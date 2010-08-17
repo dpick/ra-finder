@@ -1,0 +1,41 @@
+--- 
+sharp: 
+  label: Sharp
+  lat: 39.483489
+  long: -87.327927
+blum: 
+  label: Blumburg
+  lat: 39.483357
+  long: -87.328447
+class: 
+  label: the academic buildings
+  lat: 39.483268
+  long: -87.324475
+olin: 
+  label: Olin
+  lat: 39.483268
+  long: -87.324475
+bsb: 
+  label: BSB
+  lat: 39.482423
+  long: -87.325736
+mees: 
+  label: Mees
+  lat: 39.48358
+  long: -87.328311
+crapo: 
+  label: Crapo
+  lat: 39.483268
+  long: -87.324475
+apts: 
+  label: the apartments
+  lat: 39.483541
+  long: -87.329265
+moench: 
+  label: Moench
+  lat: 39.483268
+  long: -87.324475
+academic: 
+  label: the academic buildings
+  lat: 39.483268
+  long: -87.324475
