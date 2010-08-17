@@ -1,0 +1,6 @@
+haml (3.0.16, 3.0.13)
+heroku (1.9.13)
+oauth (0.4.2)
+rack (1.1.0, 1.0.1)
+sinatra (1.0)
+twitter (0.9.8)
