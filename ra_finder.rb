@@ -32,7 +32,7 @@ get '/' do
 end
 
 get '/events' do
-  html = ""
+  html = "<h1>Floor Events:</h1><br>"
   events.each_pair do |event, data|
     day = events[event]['day']
     month = events[event]['month']
