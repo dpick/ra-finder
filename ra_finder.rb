@@ -11,6 +11,7 @@ oauth.authorize_from_access('179202727-9UnILM65JaAEobvyXdJOlDB1AA0Bu8JXoxfNb85J'
 
 client = Twitter::Base.new(oauth)
 places = YAML::load_file("locations.yml")
+events = YAML::load_file("events.yml")
 
 get '/' do
   #get most text from most recent tweet
@@ -28,4 +29,18 @@ get '/' do
   else
     "Nick is in #{place}"
   end
+end
+
+get '/events' do
+  html = ""
+  events.each_pair do |event, data|
+    day = events[event]['day']
+    month = events[event]['month']
+    time = events[event]['time']
+    label = events[event]['label']
+    string = label + ' at ' + time + ' - ' + month + ' ' + day + '<br>'
+    html << string
+  end
+
+  return html
 end
