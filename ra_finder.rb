@@ -42,5 +42,7 @@ get '/events' do
     html << string
   end
 
+  html << '<br>' + '<a href="/">Back to main page</a>'
+
   return html
 end
