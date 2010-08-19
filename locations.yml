@@ -1,4 +1,3 @@
---- 
 sharp: 
   label: Sharp
   lat: 39.483489
@@ -39,3 +38,35 @@ academic:
   label: the academic buildings
   lat: 39.483268
   long: -87.324475
+hatfield:
+  label: Hatfield
+  lat: 39.482175
+  long: -87.322243
+speed:
+  label: Speed
+  lat: 39.482119
+  long: -87.326733
+percopo:
+  label: Percopo
+  lat: 39.482073
+  long: -87.32826
+im:
+  label: the IM Fields
+  lat: 39.486027
+  long: -87.321267
+src:
+  label: the SRC
+  lat: 39.484988
+  long: -87.327458
+taco bell:
+  label: Taco Bell
+  lat: 39.472355
+  long: -87.371459
+"sonka's":
+  label: "Sonaka's"
+  lat: 39.468396
+  long: -87.395537
+sonkas:
+  label: "Sonaka's"
+  lat: 39.468396
+  long: -87.395537
