@@ -30,3 +30,19 @@ get '/' do
     "Nick is in #{place}"
   end
 end
+
+get '/events' do
+  html = "<h1>Floor Events:</h1><br>"
+  events.each_pair do |event, data|
+    day = events[event]['day']
+    month = events[event]['month']
+    time = events[event]['time']
+    label = events[event]['label']
+    string = label + ' at ' + time + ' - ' + month + ' ' + day + '<br>'
+    html << string
+  end
+
+  html << '<br>' + '<a href="/">Back to main page</a>'
+
+  return html
+end
