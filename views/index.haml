@@ -1,6 +1,11 @@
 %meta{'http-equiv' => 'Refresh', :content => 180} <!-- Refresh every 3 minutes -->
-%iframe{:frameborder => "0", :height => "350", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :src => @url, :width => "425"}
-%br/
-%h1= @nick_line
-%br
-%a{:href => "/events"} Floor Events
+%table{:border => "0"}
+  %tr
+    %td 
+      %iframe{:frameborder => "0", :height => "350", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :src => @url, :width => "425"}
+    %td{:valign => "top"}
+      %h1 Floor Events:
+      =@events
+  %tr
+    %td
+      %h1= @nick_line

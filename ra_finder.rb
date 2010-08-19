@@ -11,7 +11,7 @@ oauth.authorize_from_access('179202727-9UnILM65JaAEobvyXdJOlDB1AA0Bu8JXoxfNb85J'
 
 client = Twitter::Base.new(oauth)
 places = YAML::load_file("locations.yml")
-events = YAML::load_file("events.yml")
+$events = YAML::load_file("events.yml")
 
 get '/' do
   #get most text from most recent tweet
@@ -25,24 +25,24 @@ get '/' do
     @url = "http://maps.google.com/maps/api/staticmap?center=#{latitude},#{longitude}\
             &zoom=18&size=400x400&sensor=false&maptype=satellite".gsub(/ /, "")
 
+    @events = get_events()
+
     haml :index
   else
-    "Nick is in #{place}"
+    "<h1>Nick is in #{place}<h1>Floor Events:</h1>" + get_events()
   end
 end
 
-get '/events' do
-  html = "<h1>Floor Events:</h1><br>"
-  events.each_pair do |event, data|
-    day = events[event]['day']
-    month = events[event]['month']
-    time = events[event]['time']
-    label = events[event]['label']
+def get_events
+  html = ""
+  $events.each_pair do |event, data|
+    day = $events[event]['day']
+    month = $events[event]['month']
+    time = $events[event]['time']
+    label = $events[event]['label']
     string = label + ' at ' + time + ' - ' + month + ' ' + day + '<br>'
     html << string
   end
-
-  html << '<br>' + '<a href="/">Back to main page</a>'
 
   return html
 end
