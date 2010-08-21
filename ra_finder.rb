@@ -37,7 +37,7 @@ end
 def get_events
   html = ""
   $events.each_pair do |event, data|
-    day = $events[event]['day'].ordinalize
+    day = $events[event]['day']
     month = $events[event]['month']
     time = $events[event]['time']
     label = $events[event]['label']
