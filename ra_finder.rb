@@ -4,9 +4,9 @@ require 'sinatra'
 require 'yaml'
 require 'haml'
 
-oauth = Twitter::OAuth.new('wPdV9dxIf8FG9JYB85gmQ', 'rdnDyDmIBMjIyp9Gf4q0uv2XgxJufEUCtUQYiBGJbM')
+oauth = Twitter::OAuth.new('XCnumRZrZ1mOMCu0EeRR4Q', 'RvlV7hqpL7Japz94yoEBF4bfsu5IXr9kq07arAMMJc')
 #consumer token, consumer secret
-oauth.authorize_from_access('179202727-9UnILM65JaAEobvyXdJOlDB1AA0Bu8JXoxfNb85J', 'JLhDdvRyUVIVnrJRJdQy7qqw2RrVrihWLZnpProA')
+oauth.authorize_from_access('170965648-xoS36VNMRxILk8WURuENuJdLwJpQxcAXFuk5Dlj7', 'GAghkKqArkOYqwfjq1qYqBLy5F8rh25o5uECY44o')
 #access token, access secret
 
 client = Twitter::Base.new(oauth)
