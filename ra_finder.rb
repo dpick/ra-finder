@@ -20,7 +20,8 @@ get '/' do
   if places.keys.include?(place)
     latitude = places[place]['lat']
     longitude = places[place]['long']
-    @nick_line = "Nick is in #{places[place]['label']}"
+    prefix = places[place]['prefix']
+    @nick_line = "Nick is #{prefix} #{places[place]['label']}"
 
     @url = "http://maps.google.com/maps/api/staticmap?center=#{latitude},#{longitude}\
             &zoom=18&size=400x400&sensor=false&maptype=satellite".gsub(/ /, "")
@@ -29,7 +30,7 @@ get '/' do
 
     haml :index
   else
-    "<h1>Nick is in #{place}<h1>Floor Events:</h1>" + get_events()
+    "<h1>Nick is #{prefix} #{place}<h1>Floor Events:</h1>" + get_events()
   end
 end
 
