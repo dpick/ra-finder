@@ -1,3 +1,8 @@
+#whatyoutweet:
+# label: what you want it to say
+# lat: latitude of the place
+# long: longitude of place
+# prefix: prefix that goes before label
 sharp: 
   label: Sharp
   prefix: in
