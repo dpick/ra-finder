@@ -17,8 +17,6 @@ get '/' do
   #get most text from most recent tweet
   place = client.user_timeline[0][:text]
 
-  puts oauth.rate_limit_status()
-
   if places.keys.include?(place)
     latitude = places[place]['lat']
     longitude = places[place]['long']
