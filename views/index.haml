@@ -6,7 +6,8 @@
     %td{:valign => "top"}
       %h1 Floor Events:
       -@events.each do |label, time, month, day|
-        ="#{label} at #{time} - #{month} #{day}"
+        %b="#{label}"
+        ="at #{time} - #{month} #{day}"
         %br
   %tr
     %td
