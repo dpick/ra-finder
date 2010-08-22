@@ -3,6 +3,7 @@ require 'twitter'
 require 'sinatra'
 require 'yaml'
 require 'haml'
+require 'pp'
 
 oauth = Twitter::OAuth.new('XCnumRZrZ1mOMCu0EeRR4Q', 'RvlV7hqpL7Japz94yoEBF4bfsu5IXr9kq07arAMMJc')
 #consumer token, consumer secret
@@ -26,25 +27,16 @@ get '/' do
     @url = "http://maps.google.com/maps/api/staticmap?center=#{latitude},#{longitude}\
             &zoom=18&size=400x400&sensor=false&maptype=satellite".gsub(/ /, "")
 
-    @events = get_events()
+    @events = events
 
     haml :index
   else
-    "<h1>Nick is #{prefix} #{place}<h1>Floor Events:</h1>" + get_events()
+    "<h1>Nick is #{prefix} #{place}<h1>Floor Events:</h1>" + events
   end
 end
 
-def get_events
-  html = ""
-  $events.each_pair do |event, data|
-    day = $events[event]['day']
-    month = $events[event]['month']
-    time = $events[event]['time']
-    label = $events[event]['label']
-
-    string = label + ' at ' + time + ' - ' + month + ' ' + day + '<br>'
-    html << string
+def events
+  $events.inject([]) do |result, (event, data)|
+    result << [data['label'], data['time'], data['month'], data['day']]
   end
-
-  return html
 end
