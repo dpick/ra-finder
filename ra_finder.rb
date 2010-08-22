@@ -4,14 +4,15 @@ require 'sinatra'
 require 'yaml'
 require 'haml'
 
-oauth = Twitter::OAuth.new('XCnumRZrZ1mOMCu0EeRR4Q', 'RvlV7hqpL7Japz94yoEBF4bfsu5IXr9kq07arAMMJc')
+config = YAML::load_file("config.yml")
+
+oauth = Twitter::OAuth.new(config['consumer_token'], config['consumer_secret'])
 #consumer token, consumer secret
-oauth.authorize_from_access('170965648-xoS36VNMRxILk8WURuENuJdLwJpQxcAXFuk5Dlj7', 'GAghkKqArkOYqwfjq1qYqBLy5F8rh25o5uECY44o')
+oauth.authorize_from_access(config['access_token'], config['access_secret']) 
 #access token, access secret
 
 client = Twitter::Base.new(oauth)
 places = YAML::load_file("locations.yml")
-$events = YAML::load_file("events.yml")
 
 get '/' do
   #get most text from most recent tweet
@@ -37,7 +38,9 @@ get '/' do
 end
 
 def events
-  $events.inject([]) do |result, (event, data)|
+  events = YAML::load_file("events.yml")
+
+  events.inject([]) do |result, (event, data)|
     result << [data['label'], data['time'], data['month'], data['day']]
   end
 end
