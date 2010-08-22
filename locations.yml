@@ -93,3 +93,23 @@ sonkas:
   prefix: at
   lat: 39.468396
   long: -87.395537
+deltasig:
+  label: Delta Sig
+  prefix: at
+  lat: 39.461636
+  long: -87.410282
+home:
+  label: Home
+  prefix: at
+  lat: 39.792037
+  long: -86.276162
+fridays:
+  label: "TGI Friday's"
+  prefix: at
+  lat: 39.428044
+  long: -87.418581
+purdue:
+  label: Purdue
+  prefix: at
+  lat: 40.434557
+  long: -86.918703
