@@ -5,14 +5,12 @@ require 'yaml'
 require 'haml'
 
 config = YAML::load_file("config.yml")
+places = YAML::load_file("locations.yml")
 
 oauth = Twitter::OAuth.new(config['consumer_token'], config['consumer_secret'])
-#consumer token, consumer secret
 oauth.authorize_from_access(config['access_token'], config['access_secret']) 
-#access token, access secret
 
 client = Twitter::Base.new(oauth)
-places = YAML::load_file("locations.yml")
 
 get '/' do
   #get most text from most recent tweet
