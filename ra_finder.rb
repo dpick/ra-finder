@@ -3,7 +3,6 @@ require 'twitter'
 require 'sinatra'
 require 'yaml'
 require 'haml'
-require 'pp'
 
 oauth = Twitter::OAuth.new('XCnumRZrZ1mOMCu0EeRR4Q', 'RvlV7hqpL7Japz94yoEBF4bfsu5IXr9kq07arAMMJc')
 #consumer token, consumer secret
@@ -22,7 +21,9 @@ get '/' do
     latitude = places[place]['lat']
     longitude = places[place]['long']
     prefix = places[place]['prefix']
-    @nick_line = "Nick is #{prefix} #{places[place]['label']}"
+    label = places[place]['label']
+
+    @nick_line = "Nick is #{prefix} #{label}"
 
     @url = "http://maps.google.com/maps/api/staticmap?center=#{latitude},#{longitude}\
             &zoom=18&size=400x400&sensor=false&maptype=satellite".gsub(/ /, "")
