@@ -4,7 +4,6 @@ require 'sinatra'
 require 'yaml'
 require 'haml'
 
-config = YAML::load_file("config.yml")
 places = YAML::load_file("locations.yml")
 $events = YAML::load_file("events.yml")
 
@@ -32,7 +31,7 @@ get '/' do
 
     haml :index
   else
-    "<h1>Nick is #{prefix} #{place}<h1>Floor Events:</h1>" + events
+    "<h1>Nick is #{prefix} #{place}<h1>Floor Events:</h1>"
   end
 end
 
