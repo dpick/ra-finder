@@ -18,14 +18,10 @@ get '/' do
   place = client.user_timeline[0][:text]
 
   if places.keys.include?(place)
-    latitude = places[place]['lat']
-    longitude = places[place]['long']
-    prefix = places[place]['prefix']
-    label = places[place]['label']
 
-    @nick_line = "Nick is #{prefix} #{label}"
+    @nick_line = "Nick is #{places[place]['prefix']} #{places[place]['label']}"
 
-    @url = "http://maps.google.com/maps/api/staticmap?center=#{latitude},#{longitude}\
+    @url = "http://maps.google.com/maps/api/staticmap?center=#{places[place]['lat']},#{places[place]['long']}\
             &zoom=18&size=400x400&sensor=false&maptype=satellite".gsub(/ /, "")
 
     @events = events
