@@ -5,8 +5,6 @@
       %br
       %h1= @nick_line
     %td{:valign => "top"}
-      %h1 Floor Events:
-      -@events.each do |label, time, month, day|
-        %b="#{label}"
-        ="at #{time} - #{month} #{day}"
-        %br
+      %iframe{:frameborder => "0", :height => "600", :scrolling => "no", :src => @event_url, :style => " border-width:0 ", :width => "800"}
+
+      
