@@ -14,7 +14,8 @@ client = Twitter::Base.new(oauth)
 
 get '/' do
   #get most text from most recent tweet
-  place = client.user_timeline[0][:text]
+  #place = client.user_timeline[0][:text]
+  place = "apartments"
 
   if places.keys.include?(place)
     latitude = places[place]['lat']
@@ -31,7 +32,7 @@ get '/' do
 
     haml :index
   else
-    "<h1>Nick is #{prefix} #{place}<h1>Floor Events:</h1>"
+    "<h1>Nick is #{prefix} #{place}<h1>Floor Events:</h1>" + events_html
   end
 end
 
@@ -39,4 +40,13 @@ def events
   $events.inject([]) do |result, (event, data)|
     result << [data['label'], data['time'], data['month'], data['day']]
   end
+end
+
+def events_html
+  html = ""
+  events.each do |label, time, month, day|
+    html << "#{label} at #{time} - #{month} #{day}<br>" 
+  end
+
+  return html
 end
