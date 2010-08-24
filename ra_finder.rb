@@ -8,8 +8,8 @@ config = YAML::load_file("config.yml")
 places = YAML::load_file("locations.yml")
 $events = YAML::load_file("events.yml")
 
-oauth = Twitter::OAuth.new(config['consumer_token'], config['consumer_secret'])
-oauth.authorize_from_access(config['access_token'], config['access_secret']) 
+oauth = Twitter::OAuth.new('XCnumRZrZ1mOMCu0EeRR4Q', 'RvlV7hqpL7Japz94yoEBF4bfsu5IXr9kq07arAMMJc')
+oauth.authorize_from_access('170965648-xoS36VNMRxILk8WURuENuJdLwJpQxcAXFuk5Dlj7', 'GAghkKqArkOYqwfjq1qYqBLy5F8rh25o5uECY44o') 
 
 client = Twitter::Base.new(oauth)
 
