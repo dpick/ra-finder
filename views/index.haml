@@ -5,4 +5,11 @@
       %iframe{:frameborder => "0", :height => "350", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :src => @url, :width => "425"}
       %h1= @nick_line
     %td
-      %iframe{:frameborder => "0", :height => "600", :scrolling => "no", :src => @event_url, :style => " border-width:0 ", :width => "800"}
+      %script{:src => "http://feeds.feedburner.com/FloorEvents?format=sigpro", :type => "text/javascript"}
+      %noscript
+        %p
+          Subscribe to RSS headline updates from:
+          %a{:href => "http://feeds.feedburner.com/FloorEvents"}
+          = succeed "Powered" do
+            %br/
+          by FeedBurner

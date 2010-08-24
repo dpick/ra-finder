@@ -1,0 +1,125 @@
+#whatyoutweet:
+# label: what you want it to say
+# lat: latitude of the place
+# long: longitude of place
+# prefix: prefix that goes before label
+union:
+  label: the Union
+  prefix: in
+  lat: 39.483547
+  long: -87.326846
+scharp: 
+  label: Scharp
+  prefix: in
+  lat: 39.483489
+  long: -87.327927
+blum: 
+  label: Blumburg
+  prefix: in
+  lat: 39.483357
+  long: -87.328447
+class: 
+  label: the academic buildings
+  prefix: in
+  lat: 39.483268
+  long: -87.324475
+olin: 
+  label: Olin
+  prefix: in
+  lat: 39.483268
+  long: -87.324475
+bsb: 
+  label: BSB
+  prefix: in
+  lat: 39.482423
+  long: -87.325736
+mees: 
+  label: Mees
+  prefix: in
+  lat: 39.48358
+  long: -87.328311
+crapo: 
+  label: Crapo
+  prefix: in
+  lat: 39.483268
+  long: -87.324475
+apts: 
+  label: the Apartments
+  prefix: in
+  lat: 39.483541
+  long: -87.329265
+apartments: 
+  label: the Apartments
+  prefix: in
+  lat: 39.483541
+  long: -87.329265
+moench: 
+  label: Moench
+  prefix: in
+  lat: 39.483268
+  long: -87.324475
+academic: 
+  label: the academic buildings
+  prefix: in
+  lat: 39.483268
+  long: -87.324475
+hatfield:
+  label: Hatfield
+  prefix: at
+  lat: 39.482175
+  long: -87.322243
+speed:
+  label: Speed
+  prefix: in
+  lat: 39.482119
+  long: -87.326733
+percopo:
+  label: Percopo
+  prefix: in
+  lat: 39.482073
+  long: -87.32826
+im:
+  label: the IM Fields
+  prefix: at
+  lat: 39.486027
+  long: -87.321267
+src:
+  label: the SRC
+  prefix: at
+  lat: 39.484988
+  long: -87.327458
+taco bell:
+  label: Taco Bell
+  prefix: at
+  lat: 39.472355
+  long: -87.371459
+"sonka's":
+  label: "Sonaka's"
+  prefix: at
+  lat: 39.468396
+  long: -87.395537
+sonkas:
+  label: "Sonaka's"
+  prefix: at
+  lat: 39.468396
+  long: -87.395537
+deltasig:
+  label: Delta Sig
+  prefix: at
+  lat: 39.461636
+  long: -87.410282
+home:
+  label: Home
+  prefix: at
+  lat: 39.792037
+  long: -86.276162
+fridays:
+  label: "TGI Friday's"
+  prefix: at
+  lat: 39.428044
+  long: -87.418581
+purdue:
+  label: Purdue
+  prefix: at
+  lat: 40.434557
+  long: -86.918703
