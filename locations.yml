@@ -39,12 +39,12 @@ crapo:
   lat: 39.483268
   long: -87.324475
 apts: 
-  label: the apartments
+  label: the Apartments
   prefix: in
   lat: 39.483541
   long: -87.329265
 apartments: 
-  label: the apartments
+  label: the Apartments
   prefix: in
   lat: 39.483541
   long: -87.329265
