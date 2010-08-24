@@ -6,6 +6,7 @@ require 'haml'
 
 config = YAML::load_file("config.yml")
 places = YAML::load_file("locations.yml")
+$events = YAML::load_file("events.yml")
 
 oauth = Twitter::OAuth.new(config['consumer_token'], config['consumer_secret'])
 oauth.authorize_from_access(config['access_token'], config['access_secret']) 
@@ -36,9 +37,7 @@ get '/' do
 end
 
 def events
-  events = YAML::load_file("events.yml")
-
-  events.inject([]) do |result, (event, data)|
+  $events.inject([]) do |result, (event, data)|
     result << [data['label'], data['time'], data['month'], data['day']]
   end
 end
