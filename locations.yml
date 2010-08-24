@@ -3,7 +3,7 @@
 # lat: latitude of the place
 # long: longitude of place
 # prefix: prefix that goes before label
-sharp: 
+scharp: 
   label: Sharp
   prefix: in
   lat: 39.483489
