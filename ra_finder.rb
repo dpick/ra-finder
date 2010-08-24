@@ -5,10 +5,11 @@ require 'yaml'
 require 'haml'
 
 places = YAML::load_file("locations.yml")
+config = YAML::load_file("config.yml")
 $events = YAML::load_file("events.yml")
 
-oauth = Twitter::OAuth.new('XCnumRZrZ1mOMCu0EeRR4Q', 'RvlV7hqpL7Japz94yoEBF4bfsu5IXr9kq07arAMMJc')
-oauth.authorize_from_access('170965648-xoS36VNMRxILk8WURuENuJdLwJpQxcAXFuk5Dlj7', 'GAghkKqArkOYqwfjq1qYqBLy5F8rh25o5uECY44o') 
+oauth = Twitter::OAuth.new(config['consumer_key'], config['consumer_secret'])
+oauth.authorize_from_access(config['access_key'], config['access_secret']) 
 
 client = Twitter::Base.new(oauth)
 
@@ -32,9 +33,7 @@ get '/' do
     haml :index
   else
     @nick_line = "Nick is in #{place}"
-
     @events = events
-
     haml :unkown_tweet
   end
 end
