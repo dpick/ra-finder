@@ -4,7 +4,7 @@
 # long: longitude of place
 # prefix: prefix that goes before label
 scharp: 
-  label: Sharp
+  label: Scharp
   prefix: in
   lat: 39.483489
   long: -87.327927
