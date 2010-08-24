@@ -3,6 +3,11 @@
 # lat: latitude of the place
 # long: longitude of place
 # prefix: prefix that goes before label
+union:
+  label: the Union
+  prefix: in
+  lat: 39.483547
+  long: -87.326846
 scharp: 
   label: Scharp
   prefix: in

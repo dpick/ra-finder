@@ -3,13 +3,13 @@
   %tr
     %td 
       %iframe{:frameborder => "0", :height => "350", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :src => @url, :width => "425"}
-    %td{:valign => "top"}
-      %h1 Floor Events:
-      -@events.each do |label, time, month, day|
-        %b="#{label}"
-        ="at #{time} - #{month} #{day}"
-        %br
-  %tr
-    %td
-      %br
       %h1= @nick_line
+    %td
+      %script{:src => "http://feeds.feedburner.com/FloorEvents?format=sigpro", :type => "text/javascript"}
+      %noscript
+        %p
+          Subscribe to RSS headline updates from:
+          %a{:href => "http://feeds.feedburner.com/FloorEvents"}
+          = succeed "Powered" do
+            %br/
+          by FeedBurner
