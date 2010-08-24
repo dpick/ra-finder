@@ -43,6 +43,11 @@ apts:
   prefix: in
   lat: 39.483541
   long: -87.329265
+apartments: 
+  label: the apartments
+  prefix: in
+  lat: 39.483541
+  long: -87.329265
 moench: 
   label: Moench
   prefix: in

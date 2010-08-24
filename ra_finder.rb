@@ -14,8 +14,7 @@ client = Twitter::Base.new(oauth)
 
 get '/' do
   #get most text from most recent tweet
-  #place = client.user_timeline[0][:text]
-  place = "apartments"
+  place = client.user_timeline[0][:text]
 
   if places.keys.include?(place)
     latitude = places[place]['lat']
