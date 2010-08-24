@@ -3,6 +3,12 @@ require 'twitter'
 require 'sinatra'
 require 'yaml'
 require 'haml'
+require 'sass'
+
+get '/styles.css' do
+  content_type 'text/css', :charset => 'utf-8'
+  sass :styles
+end
 
 places = YAML::load_file("locations.yml")
 config = YAML::load_file("config.yml")
@@ -33,8 +39,8 @@ get '/' do
     haml :unkown_tweet
   end
 end
-
 def event_url
-  "http://www.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=o9kv0en2oa8n13pfr1ehepm0d8%40\
-   group.calendar.google.com&amp;color=%238C500B&amp;ctz=America%2FNew_York".gsub(/ /, "")
+  "http://feed2js.org//feed2js.php?src=http%3A%2F%2Fwww.google.com
+  %2Fcalendar%2Ffeeds%2Fo9kv0en2oa8n13pfr1ehepm0d8%2540group.
+  calendar.google.com%2Fpublic%2Fbasic&num=5&desc=1&utf=y".gsub(/ /, "")
 end

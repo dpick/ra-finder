@@ -1,10 +1,13 @@
-%meta{'http-equiv' => 'Refresh', :content => 180} <!-- Refresh every 3 minutes -->
-%table{:border => "0", :cellpadding => "10"}
-  %tr
-    %td
-      %br
-      %h1= @nick_line
-    %td{:valign => "top"}
-      %iframe{:frameborder => "0", :height => "600", :scrolling => "no", :src => @event_url, :style => " border-width:0 ", :width => "800"}
-
-      
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
+  %head
+    %meta{'http-equiv' => 'Refresh', :content => 180}
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html'}
+    %link{:rel => "stylesheet", :type => "text/css", :href => "styles.css"}
+    %title="RA Finder"
+  %body
+    .main
+      .location
+        =@nick_line
+      .events
+        %script{:language => "JavaScript", :src => @event_url, :type => "text/javascript"}
