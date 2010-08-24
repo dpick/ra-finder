@@ -1,0 +1,12 @@
+%meta{'http-equiv' => 'Refresh', :content => 180} <!-- Refresh every 3 minutes -->
+%table{:border => "0", :cellpadding => "10"}
+  %tr
+    %td
+      %br
+      %h1= @nick_line
+    %td{:valign => "top"}
+      %h1 Floor Events:
+      -@events.each do |label, time, month, day|
+        %b="#{label}"
+        ="at #{time} - #{month} #{day}"
+        %br
