@@ -5,6 +5,7 @@ require 'yaml'
 require 'haml'
 require 'sass'
 require 'gcal4ruby'
+require 'tzinfo'
 
 ## LOAD CONFIG FILES
 
@@ -17,6 +18,10 @@ oauth = Twitter::OAuth.new(config['consumer_key'], config['consumer_secret'])
 oauth.authorize_from_access(config['access_key'], config['access_secret']) 
 
 client = Twitter::Base.new(oauth)
+
+## Initialize Time Zone
+
+rhittime = TZInfo::Timezone.get('America/Indiana/Indianapolis')
 
 ## Initialize Google Calendar
 
@@ -39,6 +44,7 @@ get '/' do
   #get most text from most recent tweet
   place = client.user_timeline[0][:text]
   @events = cal.events
+  @tz = rhittime
   if places.keys.include?(place)
     
     @nick_line = "Nick is #{places[place]['prefix']} #{places[place]['label']}"

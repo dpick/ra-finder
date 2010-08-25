@@ -13,8 +13,11 @@
         %img{:height => "425", :width => "425", :src => "images/gmapsframe.png", :alt => "Map"}
       .events
         Upcoming Events
+        %br
         - @events.each do |event|
-          = event.title
+          %strong= event.title
+          =" - "
+          = @tz.utc_to_local(event.start_time).strftime('%A %B %d, %Y')
           %br
       .location
         = @nick_line
