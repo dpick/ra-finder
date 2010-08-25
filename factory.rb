@@ -2,6 +2,7 @@ require 'twitter'
 require 'gcal4ruby'
 require 'tzinfo'
 require 'yaml'
+require 'time'
 
 class Ra_finder
   def initialize
@@ -42,24 +43,25 @@ class Google_cal
   end
 
   def events
+    #all events from now on
     events(Time.now)
   end
 
   def upcoming_events
-    events(Time.now + 86400)
+    #events occuring after today
+    events(Time.parse("11:59 pm"))
   end
 
   def events(start_time)
-    now = start_time.utc.xmlschema
-    events = GCal4Ruby::Event.find(@service, "", {:calendar => @id, 'start-min' => now})
+    events = GCal4Ruby::Event.find(@service, "", {:calendar => @id, 'start-min' => start_time.utc.xmlschema})
     events.sort!{|x, y| x.start_time <=> y.start_time }
   end
 
   def todays_events
     now = Time.now.utc.xmlschema
-    tomorrow = (Time.now + 86400).utc.xmlschema
+    midnight = (Time.parse("11:59 pm")).utc.xmlschema
 
-    events = GCal4Ruby::Event.find(@service, "", {:calendar => @id, 'start-min' => now, 'start-max' => tomorrow})
+    events = GCal4Ruby::Event.find(@service, "", {:calendar => @id, 'start-min' => now, 'start-max' => midnight})
     events.sort! {|x, y| x.start_time <=> y.start_time}
   end
 end
