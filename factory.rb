@@ -10,7 +10,11 @@ class Ra_finder
   end
 
   def twitter
-    Twitter_Client.new(@config['consumer_key'], @config['consumer_secret'], @config['access_key'], @config['access_secret'])
+    if defined? @@twitter_client
+      @@twitter_client
+    else
+      @@twitter_client = Twitter_Client.new(@config['consumer_key'], @config['consumer_secret'], @config['access_key'], @config['access_secret'])
+    end
   end
 
   def timezone
@@ -18,7 +22,11 @@ class Ra_finder
   end
 
   def google_cal
-    Google_cal.new(@config['gcal_email'], @config['gcal_password'], @config['gcal_id'])
+    if defined? @@google_cal
+      @@google_cal
+    else
+      @@google_cal = Google_cal.new(@config['gcal_email'], @config['gcal_password'], @config['gcal_id'])
+    end
   end
 end
 
@@ -53,7 +61,7 @@ class Google_cal
   end
 
   def events(start_time)
-    GCal4Ruby::Event.find(@service, "", {:calendar => @id, 'start-min' => start_time.utc.xmlschema})
+    events = GCal4Ruby::Event.find(@service, "", {:calendar => @id, 'start-min' => start_time.utc.xmlschema})
   end
 
   def todays_events
