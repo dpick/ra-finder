@@ -41,12 +41,10 @@ class Google_cal
     @id = id
   end
 
-  def cal
-    GCal4Ruby::Calendar.find(@service, {:id => @id})
-  end
-
   def events
-    cal.events.sort! {|x, y| x.start_time <=> y.start_time}
+    now = Time.now.utc.xmlschema
+    events = GCal4Ruby::Event.find(@service, "", {:calendar => @id, 'start-min' => now})
+    events.sort!{|x, y| x.start_time <=> y.start_time }
   end
 
   def todays_events
