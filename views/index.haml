@@ -9,7 +9,13 @@
     .main
       .image
         %img{:height => "425", :width => "425", :src => @url, :alt => "Map"}
+      .image.overlay
+        %img{:height => "425", :width => "425", :src => "images/gmapsframe.png", :alt => "Map"}
       .events
-        %script{:language => "JavaScript", :src => @event_url, :type => "text/javascript"}
+        Upcoming Events
+        - @events.each do |event|
+          = event.title
+          %br
       .location
-        =@nick_line
+        = @nick_line
+        

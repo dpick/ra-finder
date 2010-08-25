@@ -4,26 +4,43 @@ require 'sinatra'
 require 'yaml'
 require 'haml'
 require 'sass'
+require 'gcal4ruby'
 
-get '/styles.css' do
-  content_type 'text/css', :charset => 'utf-8'
-  sass :styles
-end
+## LOAD CONFIG FILES
 
 places = YAML::load_file("locations.yml")
 config = YAML::load_file("config.yml")
+
+## Initialize Twitter
 
 oauth = Twitter::OAuth.new(config['consumer_key'], config['consumer_secret'])
 oauth.authorize_from_access(config['access_key'], config['access_secret']) 
 
 client = Twitter::Base.new(oauth)
 
+## Initialize Google Calendar
+
+service = GCal4Ruby::Service.new
+service.authenticate(config['gcal_email'], config['gcal_password'])
+
+cal = GCal4Ruby::Calendar.find(service, {:id => config['gcal_id']})
+
+
+@calendars = service.calendars
+
+## ROUTES
+
+get '/styles.css' do
+  content_type 'text/css', :charset => 'utf-8'
+  sass :styles
+end
+
 get '/' do
   #get most text from most recent tweet
   place = client.user_timeline[0][:text]
-
+  @events = cal.events
   if places.keys.include?(place)
-
+    
     @nick_line = "Nick is #{places[place]['prefix']} #{places[place]['label']}"
 
     @url = "http://maps.google.com/maps/api/staticmap?center=#{places[place]['lat']},#{places[place]['long']}\
@@ -39,6 +56,9 @@ get '/' do
     haml :unkown_tweet
   end
 end
+
+## CUSTOM METHODS
+
 def event_url
   "http://feed2js.org//feed2js.php?src=http%3A%2F%2Fwww.google.com
   %2Fcalendar%2Ffeeds%2Fo9kv0en2oa8n13pfr1ehepm0d8%2540group.

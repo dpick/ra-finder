@@ -1,6 +1,9 @@
 $blue: #3bbfce
 $red: #ff0000
 $green: #004400
+$black: #000000
+$background: #303030
+$mediumblue: #1362D1 
 $margin: 16px
 
 body
@@ -8,17 +11,43 @@ body
 
 .image
   float: left
+.overlay
+  position: absolute
 .events
   float: right
   width: 375px
+  text:
+    align: center
+.rss-box
+  text:
+    align: left
 
 .main
   width: 800px
   margin: 10px
   background:
-    color: $blue
+    color: $background
 
 .location
   clear: both
+  color: $mediumblue
   text:
     align: center
+    shadow: $black 1px 1px 0px
+  font:
+    size: 30px
+    family: tahoma
+
+a
+  
+
+ul
+  list:
+    style: none
+  margin: 0px
+  padding:
+    top: 25px 
+    bottom: 0px
+    left: 0px
+    right: 0px
+  border: none  
