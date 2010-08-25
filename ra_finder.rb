@@ -6,31 +6,17 @@ require 'haml'
 require 'sass'
 require 'gcal4ruby'
 require 'tzinfo'
+require 'factory'
 
 ## LOAD CONFIG FILES
 
 places = YAML::load_file("locations.yml")
 config = YAML::load_file("config.yml")
 
-## Initialize Twitter
-
-oauth = Twitter::OAuth.new(config['consumer_key'], config['consumer_secret'])
-oauth.authorize_from_access(config['access_key'], config['access_secret']) 
-
-client = Twitter::Base.new(oauth)
-
-## Initialize Time Zone
-
-rhittime = TZInfo::Timezone.get('America/Indiana/Indianapolis')
-
-## Initialize Google Calendar
-
-service = GCal4Ruby::Service.new
-service.authenticate(config['gcal_email'], config['gcal_password'])
-
-cal = GCal4Ruby::Calendar.find(service, {:id => config['gcal_id']})
-
-## ROUTES
+factory = Ra_finder.new
+twitter = factory.twitter
+rhittime = factory.timezone
+cal = factory.google_cal
 
 get '/styles.css' do
   content_type 'text/css', :charset => 'utf-8'
@@ -38,13 +24,11 @@ get '/styles.css' do
 end
 
 get '/' do
-  #get most text from most recent tweet
-  place = client.user_timeline[0][:text]
-  @events = cal.events.sort! { |x, y| x.start_time <=> y.start_time }
-  @tz = rhittime
+  place = twitter.most_recent_tweet
+  @events = factory.google_cal.events
+  @tz = factory.timezone
   @event_url = event_url
-  @todays_events = GCal4Ruby::Event.find(service, "", {:calendar => cal.id, 'start-min' => Time.now.utc.xmlschema, 'start-max' => (Time.now + 86400).utc.xmlschema})
-  @todays_events.sort!{ |x, y| x.start_time <=> y.start_time } 
+  @todays_events = factory.google_cal.todays_events
 
   if places.keys.include?(place)
     
