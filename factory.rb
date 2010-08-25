@@ -53,6 +53,7 @@ class Google_cal
     now = Time.now.utc.xmlschema
     tomorrow = (Time.now + 86400).utc.xmlschema
 
-    return GCal4Ruby::Event.find(@service, "", {:calendar => @id, 'start-min' => now, 'start-max' => tomorrow})
+    events = GCal4Ruby::Event.find(@service, "", {:calendar => @id, 'start-min' => now, 'start-max' => tomorrow})
+    events.sort! {|x, y| x.start_time <=> y.start_time}
   end
 end
