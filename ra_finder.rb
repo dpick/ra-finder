@@ -1,17 +1,13 @@
 require 'rubygems'
-require 'twitter'
 require 'sinatra'
 require 'yaml'
 require 'haml'
 require 'sass'
-require 'gcal4ruby'
-require 'tzinfo'
 require 'factory'
 
 ## LOAD CONFIG FILES
 
 places = YAML::load_file("locations.yml")
-config = YAML::load_file("config.yml")
 
 factory = Ra_finder.new
 twitter = factory.twitter
