@@ -21,7 +21,7 @@ end
 
 get '/' do
   place = twitter.most_recent_tweet
-  @events = factory.google_cal.events
+  @events = factory.google_cal.upcoming_events
   @tz = factory.timezone
   @event_url = event_url
   @todays_events = factory.google_cal.todays_events
