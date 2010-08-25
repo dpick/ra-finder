@@ -43,8 +43,10 @@ end
 get '/' do
   #get most text from most recent tweet
   place = client.user_timeline[0][:text]
-  @events = cal.events
+  @events = cal.events.sort! { |x, y| y.start_time <=> x.start_time }
   @tz = rhittime
+  @event_url = event_url
+
   if places.keys.include?(place)
     
     @nick_line = "Nick is #{places[place]['prefix']} #{places[place]['label']}"
@@ -52,12 +54,9 @@ get '/' do
     @url = "http://maps.google.com/maps/api/staticmap?center=#{places[place]['lat']},#{places[place]['long']}\
             &zoom=18&size=400x400&sensor=false&maptype=satellite".gsub(/ /, "")
 
-    @event_url = event_url
-
     haml :index
   else
     @nick_line = "Nick is in #{place}"
-    @event_url = event_url
 
     haml :unkown_tweet
   end
