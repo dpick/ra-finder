@@ -14,7 +14,7 @@
       .events
         Today's Events
         %br
-        - @todaysevents.each do |event|
+        - @todays_events.each do |event|
           %strong= event.title
           =" - "
           = @tz.utc_to_local(event.start_time).strftime('%A %B %d, %Y')

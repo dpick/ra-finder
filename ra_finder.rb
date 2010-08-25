@@ -25,18 +25,11 @@ rhittime = TZInfo::Timezone.get('America/Indiana/Indianapolis')
 
 ## Initialize Google Calendar
 
-@service = GCal4Ruby::Service.new
-@service.authenticate(config['gcal_email'], config['gcal_password'])
+service = GCal4Ruby::Service.new
+service.authenticate(config['gcal_email'], config['gcal_password'])
 
-cal = GCal4Ruby::Calendar.find(@service, {:id => config['gcal_id']})
-seconds_in_a_day = 86400
+cal = GCal4Ruby::Calendar.find(service, {:id => config['gcal_id']})
 
-@tomorrow = Time.now + seconds_in_a_day
-@today = Time.now
-@calendars = @service.calendars
-todayevents = GCal4Ruby::Event.find(@service, "", {:calendar => cal.id, 'start-min' => @today.utc.xmlschema, 'start-max' => @tomorrow.utc.xmlschema})
-## DAVID LOOK HERE
-@todayevents = todayevents.sort! { |x, y| y.start_time <=> x.start_time }
 ## ROUTES
 
 get '/styles.css' do
@@ -45,15 +38,13 @@ get '/styles.css' do
 end
 
 get '/' do
-  # Date Calculations
-  
-  
-  
   #get most text from most recent tweet
   place = client.user_timeline[0][:text]
-  @events = cal.events.sort! { |x, y| y.start_time <=> x.start_time }
+  @events = cal.events.sort! { |x, y| x.start_time <=> y.start_time }
   @tz = rhittime
   @event_url = event_url
+  @todays_events = GCal4Ruby::Event.find(service, "", {:calendar => cal.id, 'start-min' => Time.now.utc.xmlschema, 'start-max' => (Time.now + 86400).utc.xmlschema})
+  @todays_events.sort!{ |x, y| x.start_time <=> y.start_time } 
 
   if places.keys.include?(place)
     
