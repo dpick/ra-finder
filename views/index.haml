@@ -15,19 +15,29 @@
         %img{:height => "425", :width => "425", :src => "images/gmapsframe.png", :alt => "Map Overlay"}
       .events
         %h2="Today's Events"
+        %img{:src => "images/event.png", :width => "599", :height => "1"}
         - @todays_events.each do |event|
-          .event
+          .event.today
             %strong= event.title
             =" - "
             = @tz.utc_to_local(event.start_time).strftime('%I:%M %p')
+            - if event.where != ""
+              %br= "at "
+              = event.where
+            - if event.content
+              %br= event.content
           %img{:src => "images/event.png", :width => "599", :height => "1"}
         %br
         %h3="Upcoming Events"
+        %img{:src => "images/event_future.png", :width => "599", :height => "1"}
         - @events.each do |event|
-          .event
+          .event.later
             %strong= event.title
             =" - "
-            = @tz.utc_to_local(event.start_time).strftime('%I:%M %p - %A %B %d, %Y')
+            -# I took out the year (, %Y )
+            = @tz.utc_to_local(event.start_time).strftime('%A %B %d at %I:%M %p')
+            %br= event.content
+          %img{:src => "images/event_future.png", :width => "599", :height => "1"}
       .location
         %br
       
