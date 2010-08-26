@@ -18,12 +18,13 @@
         %img{:src => "images/event.png", :width => "599", :height => "1"}
         - @todays_events.each do |event|
           .event.today
-            %strong= event.title
+            %span{:class => "eventtitle"}= event.title
             =" - "
             = @tz.utc_to_local(event.start_time).strftime('%I:%M %p')
             - if event.where != ""
               %br= "at "
-              = event.where
+              %span{:class => "isat"}
+                = event.where
             - if event.content
               %br= event.content
           %img{:src => "images/event.png", :width => "599", :height => "1"}

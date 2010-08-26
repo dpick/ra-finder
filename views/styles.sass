@@ -9,6 +9,8 @@ $gcal_width: 425px
 $total_width: 1024px
 $event_width: $total_width - $gcal_width
 $darkgreen: #005826
+$lightgreen: #a3d39c
+$lightblue: #9cbdd3
 
 body
   margin: 0px
@@ -32,6 +34,8 @@ body
   h2
     color: $green
     margin: 0px
+    text:
+      shadow: $black 1px 1px 0px
   h3
     color: $orange
     margin:
@@ -39,6 +43,8 @@ body
       bottom: 0px
       left: 0px
       right: 0px
+    text:
+      shadow: $black 1px 1px 0px
 
 .event
   text:
@@ -46,12 +52,19 @@ body
   margin:
     bottom: 3px
     top: 5px
+.eventtitle
+  color: $lightblue
+  font:
+    weight: bold
 
 .today
   color: #b7b7b7
 
 .later
   color: #898989
+  
+.isat
+  color: $lightgreen
 
 .main
   width: $total_width
