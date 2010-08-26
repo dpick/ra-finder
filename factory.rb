@@ -43,7 +43,7 @@ class Google_cal
     config = YAML::load_file("config.yml")
     @service = GCal4Ruby::Service.new
     @service.authenticate(config['gcal_email'], config['gcal_password'])
-    @id = config['gcal_id']
+    @cal = GCal4Ruby::Calendar.find(@service, {:id => config['gcal_id']})
   end
 
   @@instance = Google_cal.new
@@ -52,25 +52,19 @@ class Google_cal
     @@instance
   end
 
-  def events
-    events(Time.now)
-  end
-
   def upcoming_events
     tomorrow8am = Time.parse("8:00 am") + 86400
-    events(tomorrow8am)
-  end
-
-  def events(start_time)
-    events = GCal4Ruby::Event.find(@service, "", {:calendar => @id, 'start-min' => start_time.utc.xmlschema})
-    events.sort! { |x, y| x.start_time <=> y.start_time }
+    events = @cal.events.select { |event| event.start_time > tomorrow8am }
+    sort_events(events)
   end
 
   def todays_events
-    now = Time.now.utc.xmlschema
-    tomorrow8am = (Time.parse("8:00 am") + 86400).utc.xmlschema
+    tomorrow8am = (Time.parse("8:00 am") + 86400)
+    events = @cal.events.select {|event| event.start_time > Time.now and event.start_time < tomorrow8am}
+    sort_events(events)
+  end
 
-    events = GCal4Ruby::Event.find(@service, "", {:calendar => @id, 'start-min' => now, 'start-max' => tomorrow8am})
-    events.sort! { |x, y| x.start_time <=> y.start_time }
+  def sort_events(events)
+    events.sort! {|x, y| x.start_time <=> y.start_time }
   end
 end
