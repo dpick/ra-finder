@@ -62,6 +62,7 @@ class Google_cal
 
   def events(start_time)
     events = GCal4Ruby::Event.find(@service, "", {:calendar => @id, 'start-min' => start_time.utc.xmlschema})
+    events.sort! { |x, y| x.start_time <=> y.start_time }
   end
 
   def todays_events
@@ -69,5 +70,6 @@ class Google_cal
     midnight = (Time.parse("11:59 pm")).utc.xmlschema
 
     events = GCal4Ruby::Event.find(@service, "", {:calendar => @id, 'start-min' => now, 'start-max' => midnight})
+    events.sort! { |x, y| x.start_time <=> y.start_time }
   end
 end
