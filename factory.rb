@@ -59,7 +59,14 @@ class Google_cal
 
   def todays_events
     events = @cal.events.select {|event| event.start_time > Time.now and event.start_time < tomorrow8am}
-    sort_events(events)
+    events = sort_events(events)
+    
+    goodevents = Array.new
+    # We want all events today
+    events.each do |event|
+      goodevents << Good_Event.new(event.title, event.content, event.where, event.start_time, event.end_time)
+    end
+    goodevents
   end
 
   def tomorrow8am
@@ -102,8 +109,19 @@ class Good_Event
   def end=(end_time)
     @end_time = end_time
   end
+
+  # Not yet Implemented
   def length
-    @end_time
+    event_length = (@end_time - @start_time)/3600
+    if event_length.to_i == event_length
+      if event_length.to_i == 1
+        event_length.to_i.to_s + " hour"
+      else
+        event_length.to_i.to_s + " hours"
+      end
+    else
+      event_length.to_s + " hours"
+    end
   end
   
   def content
