@@ -57,8 +57,7 @@ class Google_cal
 
   def upcoming_events
     #events occuring after today
-    tomorrow8am = Time.parse("8:00 am")
-    tomorrow8am = tomorrow8am + 86400
+    tomorrow8am = Time.parse("8:00 am") + 86400
     events(tomorrow8am)
   end
 
@@ -69,10 +68,7 @@ class Google_cal
 
   def todays_events
     now = Time.now.utc.xmlschema
-    midnight = (Time.parse("11:59 pm")).utc.xmlschema
-    tomorrow8am = Time.parse("8:00 am")
-    tomorrow8am = tomorrow8am + 86400
-    tomorrow8am = tomorrow8am.utc.xmlschema
+    tomorrow8am = (Time.parse("8:00 am") + 86400).utc.xmlschema
 
     events = GCal4Ruby::Event.find(@service, "", {:calendar => @id, 'start-min' => now, 'start-max' => tomorrow8am})
     events.sort! { |x, y| x.start_time <=> y.start_time }
