@@ -5,16 +5,8 @@ require 'yaml'
 require 'time'
 
 class Ra_finder
-  def initialize
-    @config = YAML::load_file("config.yml")
-  end
-
   def twitter
-    if defined? @@twitter_client
-      @@twitter_client
-    else
-      @@twitter_client = Twitter_Client.new(@config['consumer_key'], @config['consumer_secret'], @config['access_key'], @config['access_secret'])
-    end
+    Twitter_Client.instance
   end
 
   def timezone
@@ -22,20 +14,23 @@ class Ra_finder
   end
 
   def google_cal
-    if defined? @@google_cal
-      @@google_cal
-    else
-      @@google_cal = Google_cal.new(@config['gcal_email'], @config['gcal_password'], @config['gcal_id'])
-    end
+    Google_cal.instance
   end
 end
 
 class Twitter_Client
-  def initialize(consumer_key, consumer_secret, access_key, access_secret)
-    oauth = Twitter::OAuth.new(consumer_key, consumer_secret)
-    oauth.authorize_from_access(access_key, access_secret) 
+  def initialize
+    config = YAML::load_file("config.yml")
+    oauth = Twitter::OAuth.new(config['consumer_key'], config['consumer_secret'])
+    oauth.authorize_from_access(config['access_key'], config['access_secret']) 
 
     @client = Twitter::Base.new(oauth)
+  end
+
+  @@instance = Twitter_Client.new
+
+  def self.instance
+    @@instance
   end
 
   def most_recent_tweet
@@ -44,19 +39,24 @@ class Twitter_Client
 end
 
 class Google_cal
-  def initialize(email, pass, id)
+  def initialize
+    config = YAML::load_file("config.yml")
     @service = GCal4Ruby::Service.new
-    @service.authenticate(email, pass)
-    @id = id
+    @service.authenticate(config['gcal_email'], config['gcal_password'])
+    @id = config['gcal_id']
+  end
+
+  @@instance = Google_cal.new
+
+  def self.instance
+    @@instance
   end
 
   def events
-    #all events from now on
     events(Time.now)
   end
 
   def upcoming_events
-    #events occuring after today
     tomorrow8am = Time.parse("8:00 am") + 86400
     events(tomorrow8am)
   end
