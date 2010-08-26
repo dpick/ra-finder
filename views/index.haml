@@ -19,14 +19,14 @@
           .event
             %strong= event.title
             =" - "
-            = @tz.utc_to_local(event.start_time).strftime('%A %B %d, %Y')
+            = @tz.utc_to_local(event.start_time).strftime('%I:%M %p - %A %B %d, %Y')
         %br
         %h2="Upcoming Events"
         - @events.each do |event|
           .event
             %strong= event.title
             =" - "
-            = @tz.utc_to_local(event.start_time).strftime('%A %B %d, %Y')
+            = @tz.utc_to_local(event.start_time).strftime('%I:%M %p - %A %B %d, %Y')
       .location
         %br
       
