@@ -53,15 +53,17 @@ class Google_cal
   end
 
   def upcoming_events
-    tomorrow8am = Time.parse("8:00 am") + 86400
     events = @cal.events.select { |event| event.start_time > tomorrow8am }
     sort_events(events)
   end
 
   def todays_events
-    tomorrow8am = (Time.parse("8:00 am") + 86400)
     events = @cal.events.select {|event| event.start_time > Time.now and event.start_time < tomorrow8am}
     sort_events(events)
+  end
+
+  def tomorrow8am
+    Time.parse("8:00 am") + 86400
   end
 
   def sort_events(events)
