@@ -1,10 +1,12 @@
-$blue: #3bbfce
 $red: #ff0000
-$green: #004400
+$green: #39b54a
 $black: #000000
 $background: #303030
-$mediumblue: #1362D1 
+$blue: #0072bc 
 $margin: 16px
+$gcal_width: 425px
+$total_width: 1024px
+$event_width: $total_width - $gcal_width
 
 body
   margin: 0px
@@ -15,40 +17,39 @@ body
   position: absolute
 .events
   float: right
-  width: 375px
-  color: $mediumblue
+  width: $event_width
+  color: $blue
   text:
     align: center
-.rss-box
+  font:
+    family: tahoma
+  h2
+    color: $green
+    margin: 0px
+  h3
+    color: $blue
+    margin: 0px
+.event
   text:
     align: left
 
 .main
-  width: 800px
+  width: $total_width
   margin: 10px
   background:
     color: $background
 
 .location
   clear: both
-  color: $mediumblue
+  color: $blue
   text:
     align: center
     shadow: $black 1px 1px 0px
-  font:
-    size: 30px
-    family: tahoma
+  h1
+    font:
+      size: 50px
+      family: tahoma
+      weight: bold
+    margin: 0px
 
-a
-  
-
-ul
-  list:
-    style: none
-  margin: 0px
-  padding:
-    top: 25px 
-    bottom: 0px
-    left: 0px
-    right: 0px
-  border: none  
+a 
