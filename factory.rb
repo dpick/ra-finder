@@ -79,7 +79,7 @@ class Google_cal
 end
 
 class Good_Event
-  attr_accessor :title, :content, :where, :start, :end, :length
+  attr_accessor :title, :content, :where, :start_time, :end_time, :length
   
   def initialize(title, content, where, start_time, end_time)
     @title = title
@@ -89,27 +89,6 @@ class Good_Event
     @end_time = end_time
   end
   
-  def title
-    @title
-  end
-  def title=(title)
-    @title = title
-  end
-  
-  def start
-    @start_time
-  end
-  def start=(start_time)
-    @start_time = start_time
-  end
-  
-  def end
-    @end_time
-  end
-  def end=(end_time)
-    @end_time = end_time
-  end
-
   # Not yet Implemented
   def length
     event_length = (@end_time - @start_time)/3600
@@ -122,19 +101,5 @@ class Good_Event
     else
       event_length.to_s + " hours"
     end
-  end
-  
-  def content
-    @content
-  end
-  def content=(content)
-    @content = content
-  end
-  
-  def where
-    @where
-  end
-  def where=(where)
-    @where = where
   end
 end
