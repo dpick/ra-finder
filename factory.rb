@@ -70,3 +70,53 @@ class Google_cal
     events.sort! {|x, y| x.start_time <=> y.start_time }
   end
 end
+
+class Good_Event
+  attr_accessor :title, :content, :where, :start, :end, :length
+  
+  def initialize(title, content, where, start_time, end_time)
+    @title = title
+    @content = content
+    @where = where
+    @start_time = start_time
+    @end_time = end_time
+  end
+  
+  def title
+    @title
+  end
+  def title=(title)
+    @title = title
+  end
+  
+  def start
+    @start_time
+  end
+  def start=(start_time)
+    @start_time = start_time
+  end
+  
+  def end
+    @end_time
+  end
+  def end=(end_time)
+    @end_time = end_time
+  end
+  def length
+    @end_time
+  end
+  
+  def content
+    @content
+  end
+  def content=(content)
+    @content = content
+  end
+  
+  def where
+    @where
+  end
+  def where=(where)
+    @where = where
+  end
+end
