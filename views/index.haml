@@ -36,7 +36,11 @@
             =" - "
             -# I took out the year (, %Y )
             = @tz.utc_to_local(event.start_time).strftime('%A %B %d at %I:%M %p')
-            %br= event.content
+            - if event.where != ""
+              %br= "at "
+              = event.where
+            - if event.content
+              %br= event.content
           %img{:src => "images/event_future.png", :width => "599", :height => "1"}
       .location
         %br
