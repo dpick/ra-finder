@@ -68,7 +68,22 @@ class Google_cal
     end
     goodevents
   end
-
+  
+  def all_events
+    events = @cal.events
+    sort_events(events)
+  end
+  
+  def recurring_events(start_time, end_time)
+    events = Array.new
+    sort_events(@cal.events).each do |event|
+      if event.recurrence && event.start_time < start_time && event.end_time > end_time
+        events << event
+      end
+    end
+    events
+  end
+  
   def tomorrow8am
     Time.parse("8:00 am") + 86400
   end
@@ -110,7 +125,6 @@ class Good_Event
     @end_time = end_time
   end
 
-  # Not yet Implemented
   def length
     event_length = (@end_time - @start_time)/3600
     if event_length.to_i == event_length
