@@ -7,7 +7,7 @@ require 'factory'
 
 places = YAML::load_file("locations.yml")
 
-factory = Ra_finder.new
+factory = Ra_finder_factory.new
 twitter = factory.twitter
 rhittime = factory.timezone
 cal = factory.google_cal
@@ -27,8 +27,7 @@ get '/' do
     
     @nick_line = "Nick is #{places[place]['prefix']} #{places[place]['label']}"
 
-    @url = "http://maps.google.com/maps/api/staticmap?center=#{places[place]['lat']},#{places[place]['long']}\
-            &zoom=18&size=400x400&sensor=false&maptype=satellite".gsub(/ /, "")
+    @url = factory.url(places[place]['lat'], places[place]['long'])
 
     haml :index
   else

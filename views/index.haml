@@ -21,8 +21,6 @@
             %span{:class => "eventtitle"}= event.title
             =" - "
             = @tz.utc_to_local(event.start_time).strftime('%I:%M %p')
-            =" - "
-            = event.length
             - if event.where != ""
               %br= "at "
               %span{:class => "isat"}
@@ -37,7 +35,6 @@
           .event.later
             %strong= event.title
             =" - "
-            -# I took out the year (, %Y )
             = @tz.utc_to_local(event.start_time).strftime('%A %B %d at %I:%M %p')
             - if event.where != ""
               %br= "at "
