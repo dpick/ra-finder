@@ -32,7 +32,7 @@ class Google_cal
   end
 
   def tomorrow8am
-    Time.parse("8:00 am") + 86400
+    (Time.parse("8:00 am") + 86400)
   end
 
   def end_of_year
