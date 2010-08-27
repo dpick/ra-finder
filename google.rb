@@ -17,12 +17,12 @@ class Google_cal
   end
 
   def upcoming_events
-    events = GCal4Ruby::Event.find(@cal, "", {:singleevents => true, :range => {:start => tomorrow8am, :end => end_of_year}})
+    events = GCal4Ruby::Event.find(@cal, "", {:max_results => 5, :singleevents => true, :range => {:start => tomorrow8am, :end => end_of_year}})
     sort_events(events)
   end
 
   def todays_events
-    events = GCal4Ruby::Event.find(@cal, "", {:singleevents => true, :range => {:start => Time.now, :end => tomorrow8am}})
+    events = GCal4Ruby::Event.find(@cal, "", {:max_results => 5, :singleevents => true, :range => {:start => Time.now, :end => tomorrow8am}})
     sort_events(events)
   end
 
