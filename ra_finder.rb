@@ -18,8 +18,8 @@ end
 
 get '/' do
   place = twitter.most_recent_tweet
-  @events = factory.google_cal.upcoming_events
-  @todays_events = factory.google_cal.todays_events
+  @events = cal.upcoming_events
+  @todays_events = cal.todays_events
   @tz = factory.timezone
 
   if places.keys.include?(place)
@@ -37,8 +37,8 @@ get '/' do
 end
 
 get '/events' do
-  @events = factory.google_cal.upcoming_events
-  @todays_events = factory.google_cal.todays_events
+  @events = cal.upcoming_events
+  @todays_events = cal.todays_events
   @tz = factory.timezone
   haml :events
 end
