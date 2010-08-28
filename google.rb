@@ -17,7 +17,7 @@ class Google_cal
   end
 
   def upcoming_events
-    events = GCal4Ruby::Event.find(@cal, "", {:singleevents => true, :range => {:start => tomorrow8am, :end => end_of_year}})
+    events = GCal4Ruby::Event.find(@cal, "", {:max_results => 5, :singleevents => true, :range => {:start => tomorrow8am, :end => end_of_year}})
     sort_events(events)
   end
 
@@ -32,7 +32,7 @@ class Google_cal
   end
 
   def tomorrow8am
-    Time.parse("8:00 am") + 86400
+    (Time.parse("8:00 am") + 86400)
   end
 
   def end_of_year

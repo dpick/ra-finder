@@ -20,7 +20,7 @@
           .event.today
             %span{:class => "eventtitle"}= event.title
             =" - "
-            = @tz.utc_to_local(event.start).strftime('%I:%M %p')
+            = @tz.utc_to_local(event.start.utc).strftime("%I:%M %p")
             - if event.where != ""
               %br= "at "
               %span{:class => "isat"}
@@ -35,7 +35,7 @@
           .event.later
             %strong= event.title
             =" - "
-            = @tz.utc_to_local(event.start).strftime('%A %B %d at %I:%M %p')
+            = @tz.utc_to_local(event.start.utc).strftime("%A %B %d at %I:%M %p")
             - if event.where != ""
               %br= "at "
               = event.where

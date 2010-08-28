@@ -9,7 +9,6 @@ places = YAML::load_file("locations.yml")
 
 factory = Ra_finder_factory.new
 twitter = factory.twitter
-rhittime = factory.timezone
 cal = factory.google_cal
 
 get '/styles.css' do
@@ -20,8 +19,8 @@ end
 get '/' do
   place = twitter.most_recent_tweet
   @events = factory.google_cal.upcoming_events
-  @tz = factory.timezone
   @todays_events = factory.google_cal.todays_events
+  @tz = factory.timezone
 
   if places.keys.include?(place)
     
