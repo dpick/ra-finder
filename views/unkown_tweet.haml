@@ -2,12 +2,41 @@
 %html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en", :lang => "en"}
   %head
     %meta{'http-equiv' => 'Refresh', :content => 180}
-    %meta{'http-equiv' => 'Content-Type', :content => 'text/html'}
+    %meta{'http-equiv' => 'Content-Type', :content => 'content="text/html; charset=utf-8;'}
     %link{:rel => "stylesheet", :type => "text/css", :href => "styles.css"}
     %title="RA Finder"
   %body
     .main
       .location
-        =@nick_line
-      .events
-        %script{:language => "JavaScript", :src => @event_url, :type => "text/javascript"}
+        %h1= @nick_line
+      .events.unknown
+        %h2="Today's Events"
+        %img{:src => "images/event.png", :width => "599", :height => "1"}
+        - @todays_events.each do |event|
+          .event.today
+            %span{:class => "eventtitle"}= event.title
+            =" - "
+            = @tz.utc_to_local(event.start.utc).strftime("%I:%M %p")
+            - if event.where != ""
+              %br= "at "
+              %span{:class => "isat"}
+                = event.where
+            - if event.content
+              %br= event.content
+          %img{:src => "images/event.png", :width => "599", :height => "1"}
+        %br
+        %h3="Upcoming Events"
+        %img{:src => "images/event_future.png", :width => "599", :height => "1"}
+        - @events.each do |event|
+          .event.later
+            %strong= event.title
+            =" - "
+            = @tz.utc_to_local(event.start.utc).strftime("%A %B %d at %I:%M %p")
+            - if event.where != ""
+              %br= "at "
+              = event.where
+            - if event.content
+              %br= event.content
+          %img{:src => "images/event_future.png", :width => "599", :height => "1"}
+      .location
+        %br
