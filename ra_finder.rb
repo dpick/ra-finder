@@ -35,3 +35,10 @@ get '/' do
     haml :unkown_tweet
   end
 end
+
+get '/events' do
+  @events = factory.google_cal.upcoming_events
+  @todays_events = factory.google_cal.todays_events
+  @tz = factory.timezone
+  haml :events
+end
