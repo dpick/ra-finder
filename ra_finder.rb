@@ -17,10 +17,14 @@ get '/styles.css' do
 end
 
 get '/' do
-  place = twitter.most_recent_tweet
-  @events = cal.upcoming_events
-  @todays_events = cal.todays_events
-  @tz = factory.timezone
+  begin
+    place = twitter.most_recent_tweet
+    @events = cal.upcoming_events
+    @todays_events = cal.todays_events
+    @tz = factory.timezone
+  rescue
+    @nick_line = "We can't find Nick right now, try his cell phone 317-501-0434"
+  end
 
   if places.keys.include?(place)
     
