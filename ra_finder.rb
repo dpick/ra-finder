@@ -23,6 +23,9 @@ get '/' do
     @todays_events = cal.todays_events
     @tz = factory.timezone
   rescue
+    @events = []
+    @todays_events = []
+    @tz = factory.timezone
     @nick_line = "We can't find Nick right now, try his cell phone 317-501-0434"
   end
 
