@@ -14,7 +14,10 @@
       .image.overlay
         %img{:height => "425", :width => "425", :src => "images/gmapsframe.png", :alt => "Map Overlay"}
       .events
-        %h2="Today's Events"
+        %h2
+          ="Today's Events ("
+          = Time.now.strftime("%I:%M %p")
+          =")"
         %img{:src => "images/event.png", :width => "599", :height => "1"}
         - @todays_events.each do |event|
           .event.today

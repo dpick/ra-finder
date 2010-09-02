@@ -10,7 +10,10 @@
       .location
         %h1= @nick_line
       .events.unknown
-        %h2="Today's Events"
+        %h2
+          ="Today's Events ("
+          = Time.now.strftime("%I:%M %p")
+          =")"
         %img{:src => "images/event.png", :width => "599", :height => "1"}
         - @todays_events.each do |event|
           .event.today
