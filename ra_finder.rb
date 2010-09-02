@@ -16,6 +16,26 @@ get '/styles.css' do
   sass :styles
 end
 
+get '/fun' do
+  place = twitter.most_recent_tweet
+  @events = cal.upcoming_events
+  @todays_events = cal.todays_events
+  @tz = factory.timezone
+
+  if places.keys.include?(place)
+    
+    @nick_line = "Nick is fucking a goat #{places[place]['prefix']} #{places[place]['label']}"
+
+    @url = factory.url(places[place]['lat'], places[place]['long'])
+
+    haml :index
+  else
+    @nick_line = "Nick is fucking a goat in #{place}"
+
+    haml :unkown_tweet
+  end
+end
+
 get '/' do
   begin
     place = twitter.most_recent_tweet
