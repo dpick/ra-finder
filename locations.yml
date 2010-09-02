@@ -123,3 +123,28 @@ purdue:
   prefix: at
   lat: 40.434557
   long: -86.918703
+skinner:
+  label: Skinner
+  prefix: in
+  lat: 39.482398
+  long: -87.320731
+whitechapel:
+  label: White Chapel
+  prefix: at
+  lat: 39.482568
+  long: -87.329367
+"white chapel":
+  label: White Chapel
+  prefix: at
+  lat: 39.482568
+  long: -87.329367
+deming:
+  label: Deming
+  prefix: in
+  lat: 39.483415
+  long: -87.325773
+new:
+  label: the New Day Cafe
+  prefix: at
+  lat: 39.435265
+  long: -87.413801
