@@ -12,7 +12,7 @@
       .events.unknown
         %h2
           ="Today's Events ("
-          = Time.now.strftime("%I:%M %p")
+          = @tz.utc_to_local(Time.now.utc).strftime("%I:%M %p")
           =")"
         %img{:src => "images/event.png", :width => "599", :height => "1"}
         - @todays_events.each do |event|
