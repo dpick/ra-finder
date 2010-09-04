@@ -5,15 +5,20 @@ require 'time'
 class Google_cal
   def initialize
     config = YAML::load_file("config.yml")
-    @service = GCal4Ruby::Service.new
-    @service.authenticate(config['gcal_email'], config['gcal_password'])
-    @cal = GCal4Ruby::Calendar.find(@service, config['gcal_id'], {:scope => :first})
+    service = GCal4Ruby::Service.new
+    service.authenticate(config['gcal_email'], config['gcal_password'])
+    @cal = GCal4Ruby::Calendar.find(service, config['gcal_id'], {:scope => :first})
+    @on_duty = GCal4Ruby::Calendar.find(service, config['on_duty_id'], {:scope => :first})
   end
 
   @@instance = Google_cal.new
 
   def self.instance
     @@instance
+  end
+
+  def on_duty
+    @on_duty.events[0].title
   end
 
   def upcoming_events

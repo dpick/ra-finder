@@ -21,6 +21,7 @@ get '/fun' do
   @events = cal.upcoming_events
   @todays_events = cal.todays_events
   @tz = factory.timezone
+  @on_duty = cal.on_duty
 
   if places.keys.include?(place)
     
@@ -42,10 +43,12 @@ get '/' do
     @events = cal.upcoming_events
     @todays_events = cal.todays_events
     @tz = factory.timezone
+    @on_duty = "#{cal.on_duty} is on duty"
   rescue
     @events = []
     @todays_events = []
     @tz = factory.timezone
+    @on_duty = "Check the whiteboard to see who is on duty"
     @nick_line = "We can't find Nick right now, try his cell phone 317-501-0434"
   end
 
