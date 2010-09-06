@@ -18,7 +18,10 @@ class Google_cal
   end
 
   def on_duty
-    @on_duty.events[0].title
+    params = {:singleevents => true, :range => {:start => Time.now, :end => tomorrow8am}}
+    events = GCal4Ruby::Event.find(@on_duty, "", params)
+    return sort_events(events)[0] if events != nil
+    return "No one"
   end
 
   def upcoming_events
