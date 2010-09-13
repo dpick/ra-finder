@@ -148,3 +148,18 @@ new:
   prefix: at
   lat: 39.435265
   long: -87.413801
+walmart:
+  label: Walmart
+  prefix: at
+  lat: 39.441413
+  long: -87.334024
+Walmart:
+  label: Walmart
+  prefix: at
+  lat: 39.441413
+  long: -87.334024
+speedlake:
+  label: Speed Lake
+  prefix: in
+  lat: 39.482785
+  long: -87.328024
