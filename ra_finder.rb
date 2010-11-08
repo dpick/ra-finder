@@ -4,12 +4,14 @@ require 'yaml'
 require 'haml'
 require 'sass'
 require 'factory'
+require 'weather'
 
 places = YAML::load_file("locations.yml")
 
 factory = Ra_finder_factory.new
 twitter = factory.twitter
 cal = factory.google_cal
+w = Weather.new
 
 get '/styles.css' do
   content_type 'text/css', :charset => 'utf-8'
@@ -53,6 +55,8 @@ get '/' do
     @on_duty_phone = ""
     @nick_line = "We can't find Nick right now, try his cell phone 317-501-0434"
   end
+  @THTemp = w.getTemp
+  @THFeels = w.getFeelsLike
 
   if places.keys.include?(place)
     

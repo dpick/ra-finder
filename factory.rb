@@ -3,6 +3,7 @@ require 'yaml'
 require 'time'
 require 'google'
 require 'twitter_client'
+require 'weather'
 
 class Ra_finder_factory
   def twitter
