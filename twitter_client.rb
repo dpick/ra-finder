@@ -18,6 +18,6 @@ class Twitter_Client
 
   def most_recent_tweet
     @client.user_timeline[0][:text] =~ /#([A-Za-z0-9']*)/
-    return $1
+    return $1.downcase
   end
 end
