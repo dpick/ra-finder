@@ -7,7 +7,7 @@ class Weather
     config = YAML::load_file("config.yml")
     RWeather.partner_id = config['weather_partner_id']
     RWeather.key = config['weather_key']
-    @locations = RWeather.search('Terre Haute, IN') # that's where I'm from :)
+    @locations = RWeather.search(config['location']) # that's where I'm from :)
     getWeather
   end
   
